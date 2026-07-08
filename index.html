@@ -1,260 +1,369 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Aastha ✨</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Aastha</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    body {
+      overflow: hidden;
+      background: #050505;
+      color: white;
+      height: 100vh;
+      width: 100%;
+      position: relative;
+    }
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transition: 1s ease;
+    }
 
-  <link rel="stylesheet" href="style.css">
-</head>
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(1.05);
+    }
 
-<body>
+    /* ---------- INTRO ---------- */
 
-<!-- Canvas Layers -->
+    #intro {
+      background: radial-gradient(circle at center, #111 0%, #050505 70%);
+    }
 
-<canvas id="stars"></canvas>
-<canvas id="fireworks"></canvas>
+    .floating-text {
+      position: absolute;
+      font-size: 1.2rem;
+      opacity: 0.08;
+      animation: float 12s linear infinite;
+      white-space: nowrap;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
 
-<div id="aurora"></div>
+    .highlight {
+      opacity: 0.35;
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(255,255,255,0.4);
+    }
 
-<!-- Background Music -->
+    @keyframes float {
+      from {
+        transform: translateY(100vh);
+      }
+      to {
+        transform: translateY(-120vh);
+      }
+    }
 
-<audio id="bgMusic" loop>
-    <source src="assets/music.mp3" type="audio/mpeg">
-</audio>
+    .main-title {
+      z-index: 2;
+      text-align: center;
+      animation: fadeUp 2s ease;
+    }
 
-<!-- ================= Loading ================= -->
+    .main-title h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
 
-<section class="scene active" id="loading">
+    .main-title p {
+      margin-top: 15px;
+      color: #bdbdbd;
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
 
-    <div class="loader"></div>
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-    <h2>Preparing Something Beautiful...</h2>
+    .start-btn {
+      margin-top: 40px;
+      padding: 14px 38px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: 0.4s ease;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
 
-    <p>Please wait a moment ✨</p>
+    .start-btn:hover {
+      background: rgba(255,255,255,0.12);
+      transform: scale(1.05);
+    }
 
-</section>
+    /* ---------- FLOWER WORLD ---------- */
 
-<!-- ================= Hero ================= -->
+    #flowers {
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 40%),
+        linear-gradient(to bottom, #030303, #0b0b0b, #111111);
+    }
 
-<section class="scene" id="hero">
+    .flower {
+      position: absolute;
+      font-size: 2rem;
+      animation: petals linear infinite;
+      opacity: 0.9;
+    }
 
-    <div class="glass">
+    @keyframes petals {
+      from {
+        transform: translateY(-10vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(120vh) rotate(360deg);
+      }
+    }
 
-        <h1>
+    .flower-text {
+      position: absolute;
+      z-index: 5;
+      text-align: center;
+      animation: fadeUp 2s ease;
+    }
 
-            Happy Birthday
+    .flower-text h2 {
+      font-size: 3.5rem;
+      letter-spacing: 5px;
+      margin-bottom: 15px;
+      text-shadow: 0 0 25px rgba(255,255,255,0.25);
+    }
 
-            <span>Aastha ✨</span>
+    .flower-text p {
+      color: #d4d4d4;
+      letter-spacing: 2px;
+      font-size: 1.05rem;
+      text-shadow: 0 0 15px rgba(255,255,255,0.15);
+    }
 
-        </h1>
+    /* ---------- VIDEO SECTION ---------- */
 
-        <p>
+    #video-section {
+      background: black;
+    }
 
-            Some wishes are written.
+    .video-container {
+      width: 90%;
+      max-width: 900px;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.08);
+      animation: fadeUp 1.5s ease;
+    }
 
-            Some are remembered.
+    video {
+      width: 100%;
+      display: block;
+    }
 
-            And some become an experience.
+    /* ---------- FINAL ---------- */
 
-        </p>
+    #final {
+      background: radial-gradient(circle at center, #0a0a0a, black);
+      text-align: center;
+      padding: 20px;
+    }
 
-        <button id="beginBtn">
+    .final-message {
+      max-width: 700px;
+      animation: fadeUp 2s ease;
+    }
 
-            Begin Journey ✨
+    .final-message h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+    }
 
-        </button>
+    .final-message p {
+      color: #cfcfcf;
+      font-size: 1.1rem;
+      line-height: 1.9;
+    }
 
-    </div>
+    .signature {
+      margin-top: 35px;
+      color: #888;
+      letter-spacing: 3px;
+      font-size: 0.9rem;
+    }
 
-</section>
+    @media(max-width: 768px) {
+      .main-title h1,
+      .final-message h1,
+      .flower-text h2 {
+        font-size: 2.5rem;
+      }
 
-<!-- ================= Languages ================= -->
+      .main-title p,
+      .final-message p {
+        font-size: 0.95rem;
+      }
+    }
+  </style></head>
+<body>  <!-- INTRO -->  <section class="screen" id="intro"><div class="floating-text" style="left:5%; animation-duration:15s;">Happy Birthday</div>
+<div class="floating-text highlight" style="left:12%; animation-duration:13s;">お誕生日おめでとう</div>
+<div class="floating-text" style="left:20%; animation-duration:18s;">Feliz Cumpleaños</div>
+<div class="floating-text highlight" style="left:28%; animation-duration:12s;">Buon Compleanno</div>
+<div class="floating-text" style="left:35%; animation-duration:20s;">Joyeux Anniversaire</div>
+<div class="floating-text highlight" style="left:42%; animation-duration:16s;">생일 축하합니다</div>
+<div class="floating-text" style="left:50%; animation-duration:17s;">Alles Gute zum Geburtstag</div>
+<div class="floating-text highlight" style="left:58%; animation-duration:14s;">Feliz Aniversário</div>
+<div class="floating-text" style="left:66%; animation-duration:19s;">С Днём Рождения</div>
+<div class="floating-text highlight" style="left:74%; animation-duration:15s;">生日快乐</div>
+<div class="floating-text" style="left:82%; animation-duration:21s;">عيد ميلاد سعيد</div>
+<div class="floating-text highlight" style="left:90%; animation-duration:16s;">Doğum Günün Kutlu Olsun</div>
 
-<section class="scene" id="languages">
+<!-- Indian Languages -->
+<div class="floating-text highlight" style="left:8%; animation-duration:22s;">जन्मदिन मुबारक</div>
+<div class="floating-text" style="left:18%; animation-duration:24s;">শুভ জন্মদিন</div>
+<div class="floating-text highlight" style="left:30%; animation-duration:20s;">ਜਨਮਦਿਨ ਮੁਬਾਰਕ</div>
+<div class="floating-text" style="left:45%; animation-duration:23s;">જન્મદિવસ મુબારક</div>
+<div class="floating-text highlight" style="left:60%; animation-duration:18s;">ಹುಟ್ಟುಹಬ್ಬದ ಶುಭಾಶಯಗಳು</div>
+<div class="floating-text" style="left:76%; animation-duration:25s;">பிறந்தநாள் வாழ்த்துக்கள்</div>
+<div class="floating-text highlight" style="left:88%; animation-duration:19s;">ജന്മദിനാശംസകൾ</div>
 
-    <h2>Birthday Wishes Around The World</h2>
+<div class="main-title">
+  <h1>Happy Birthday Aastha ✨</h1>
+  <p>Wishes from different corners of the world.</p>
 
-    <div id="languageContainer">
+  <div style="margin-top:35px;"></div>
+</div>
 
-        <span>Happy Birthday</span>
-        <span>जन्मदिन मुबारक</span>
-        <span>お誕生日おめでとう</span>
-        <span>生日快乐</span>
-        <span>생일 축하합니다</span>
-        <span>Joyeux Anniversaire</span>
-        <span>Feliz Cumpleaños</span>
-        <span>Buon Compleanno</span>
-        <span>Alles Gute zum Geburtstag</span>
-        <span>С Днём Рождения</span>
-        <span>عيد ميلاد سعيد</span>
-        <span>Feliz Aniversário</span>
-        <span>Doğum Günün Kutlu Olsun</span>
-        <span>শুভ জন্মদিন</span>
-        <span>ਜਨਮਦਿਨ ਮੁਬਾਰਕ</span>
-        <span>જન્મદિવસ મુબારક</span>
-        <span>ಹುಟ್ಟುಹಬ್ಬದ ಶುಭಾಶಯಗಳು</span>
-        <span>பிறந்தநாள் வாழ்த்துக்கள்</span>
-        <span>ജന്മദിനാശംസകൾ</span>
+  <div id="revealText" style="margin-top:40px; opacity:0; transition:2s ease;">
+    <p style="color:#d4d4d4; letter-spacing:2px; margin-bottom:25px; font-size:1rem;">
+      Some wishes deserve more than words.
+    </p>
 
-    </div>
-
-    <button class="nextBtn">
-
-        Continue →
-
+    <button class="start-btn" onclick="openSurprise()">
+      Continue ✨
     </button>
+  </div>
+</div>
 
-</section>
+  </section>  <!-- FLOWERS -->  <section class="screen hidden" id="flowers"><div class="flower-text">
+  <h2>✨ A Little Surprise ✨</h2>
 
-<!-- ================= Garden ================= -->
+  <p>
+    “And in the middle of all the chaos,
+    there was someone worth celebrating.”
+  </p>
 
-<section class="scene" id="garden">
+  <div style="margin-top:25px; color:#bdbdbd; font-size:0.95rem; letter-spacing:2px; line-height:1.8; max-width:650px;">
+    Some people leave memories.
+    Some leave a feeling.
+    And some simply make the world feel softer,
+    brighter,
+    and a little more beautiful.
+  </div>
 
-    <div id="flowers"></div>
+  <div style="margin-top:35px; font-size:2rem; opacity:0.75; letter-spacing:12px; animation:fadeUp 3s ease; filter:drop-shadow(0 0 10px rgba(255,255,255,0.25));">
+    🌸 🌹 🌷 🪻 🌺 🌻 💮
+  </div>
 
-    <div class="glass messageBox">
+  <div style="margin-top:30px; color:#8f8f8f; font-size:0.85rem; letter-spacing:4px; text-transform:uppercase;">
+    Flowers from around the world.
+  </div>
+</div>
 
-        <h2>
-
-            A Little Surprise 🌸
-
-        </h2>
-
-        <p>
-
-            Some people leave memories.
-
-            Some leave feelings.
-
-            And some simply make the world
-
-            a little brighter,
-
-            a little softer,
-
-            and a little more beautiful.
-
-        </p>
-
-        <button class="nextBtn">
-
-            Continue →
-
-        </button>
-
+  </section>  <!-- VIDEO -->  <section class="screen hidden" id="video-section">
+    <div class="video-container">
+      <video id="birthdayVideo" controls>
+        <source src="your-video.mp4" type="video/mp4">
+      </video>
     </div>
+  </section>  <!-- FINAL -->  <section class="screen hidden" id="final">
+    <div class="final-message">
+      <h1>Happy Birthday ✨</h1><p>
+    Some wishes are simple.<br>
+    Some are made with effort.<br><br>
 
-</section>
+    Wishing you happiness,
+    beautiful memories,
+    and an amazing year ahead 🌙
+  </p>
 
-<!-- ================= Wish ================= -->
+  <div class="signature">
+    — from a classmate
+  </div>
+</div>
 
-<section class="scene" id="wish">
+  </section>  <script>
 
-    <div class="glass wishCard">
+    // FLOWER GENERATOR
+    const flowers = ['🌸','🌺','🌷','🌹','💮','🌻','🪻'];
 
-        <h1>
+    function createFlower() {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
 
-            Happy Birthday
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = (Math.random() * 6 + 6) + 's';
+      flower.style.fontSize = (Math.random() * 25 + 20) + 'px';
 
-            <span>Aastha ✨</span>
+      document.getElementById('flowers').appendChild(flower);
 
-        </h1>
+      setTimeout(() => {
+        flower.remove();
+      }, 12000);
+    }
 
-        <p>
+    setInterval(createFlower, 300);
 
-            May every sunrise
 
-            bring new hope.
+    // SHOW REVEAL TEXT AFTER LANGUAGE FLOW
 
-            Every smile
+    setTimeout(() => {
+      document.getElementById('revealText').style.opacity = '1';
+    }, 7000);
 
-            become a beautiful memory.
 
-            Every dream
+    // SCREEN FLOW
 
-            come a little closer.
+    function openSurprise() {
+      document.getElementById('intro').classList.add('hidden');
+      document.getElementById('flowers').classList.remove('hidden');
 
-            And may happiness
+      setTimeout(() => {
+        document.getElementById('flowers').classList.add('hidden');
+        document.getElementById('video-section').classList.remove('hidden');
 
-            always find its way to you.
+        const video = document.getElementById('birthdayVideo');
+        video.play();
 
-        </p>
+        video.onended = function() {
+          document.getElementById('video-section').classList.add('hidden');
+          document.getElementById('final').classList.remove('hidden');
+        }
 
-        <button class="nextBtn">
+      }, 7000);
+    }
 
-            Final Surprise 🎆
-
-        </button>
-
-    </div>
-
-</section>
-
-<!-- ================= Finale ================= -->
-
-<section class="scene" id="final">
-
-    <div class="glass finalCard">
-
-        <h1>
-
-            Happy Birthday ✨
-
-        </h1>
-
-        <p>
-
-            Thank you
-
-            for taking this little journey.
-
-            Wishing you
-
-            endless happiness,
-
-            beautiful memories,
-
-            good health,
-
-            success,
-
-            and countless reasons
-
-            to smile.
-
-        </p>
-
-        <h3>
-
-            Have an amazing year ahead ❤️
-
-        </h3>
-
-        <div class="signature">
-
-            — From a Classmate
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- Floating Controls -->
-
-<button id="musicBtn">
-
-🔊
-
-</button>
-
-<script src="script.js"></script>
-
-</body>
+  </script></body>
 </html>
