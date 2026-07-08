@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Aastha ✨</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Canvas Layers -->
+
+<canvas id="stars"></canvas>
+<canvas id="fireworks"></canvas>
+
+<div id="aurora"></div>
+
+<!-- Background Music -->
+
+<audio id="bgMusic" loop>
+    <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ================= Loading ================= -->
+
+<section class="scene active" id="loading">
+
+    <div class="loader"></div>
+
+    <h2>Preparing Something Beautiful...</h2>
+
+    <p>Please wait a moment ✨</p>
+
+</section>
+
+<!-- ================= Hero ================= -->
+
+<section class="scene" id="hero">
+
+    <div class="glass">
+
+        <h1>
+
+            Happy Birthday
+
+            <span>Aastha ✨</span>
+
+        </h1>
+
+        <p>
+
+            Some wishes are written.
+
+            Some are remembered.
+
+            And some become an experience.
+
+        </p>
+
+        <button id="beginBtn">
+
+            Begin Journey ✨
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ================= Languages ================= -->
+
+<section class="scene" id="languages">
+
+    <h2>Birthday Wishes Around The World</h2>
+
+    <div id="languageContainer">
+
+        <span>Happy Birthday</span>
+        <span>जन्मदिन मुबारक</span>
+        <span>お誕生日おめでとう</span>
+        <span>生日快乐</span>
+        <span>생일 축하합니다</span>
+        <span>Joyeux Anniversaire</span>
+        <span>Feliz Cumpleaños</span>
+        <span>Buon Compleanno</span>
+        <span>Alles Gute zum Geburtstag</span>
+        <span>С Днём Рождения</span>
+        <span>عيد ميلاد سعيد</span>
+        <span>Feliz Aniversário</span>
+        <span>Doğum Günün Kutlu Olsun</span>
+        <span>শুভ জন্মদিন</span>
+        <span>ਜਨਮਦਿਨ ਮੁਬਾਰਕ</span>
+        <span>જન્મદિવસ મુબારક</span>
+        <span>ಹುಟ್ಟುಹಬ್ಬದ ಶುಭಾಶಯಗಳು</span>
+        <span>பிறந்தநாள் வாழ்த்துக்கள்</span>
+        <span>ജന്മദിനാശംസകൾ</span>
+
+    </div>
+
+    <button class="nextBtn">
+
+        Continue →
+
+    </button>
+
+</section>
+
+<!-- ================= Garden ================= -->
+
+<section class="scene" id="garden">
+
+    <div id="flowers"></div>
+
+    <div class="glass messageBox">
+
+        <h2>
+
+            A Little Surprise 🌸
+
+        </h2>
+
+        <p>
+
+            Some people leave memories.
+
+            Some leave feelings.
+
+            And some simply make the world
+
+            a little brighter,
+
+            a little softer,
+
+            and a little more beautiful.
+
+        </p>
+
+        <button class="nextBtn">
+
+            Continue →
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ================= Wish ================= -->
+
+<section class="scene" id="wish">
+
+    <div class="glass wishCard">
+
+        <h1>
+
+            Happy Birthday
+
+            <span>Aastha ✨</span>
+
+        </h1>
+
+        <p>
+
+            May every sunrise
+
+            bring new hope.
+
+            Every smile
+
+            become a beautiful memory.
+
+            Every dream
+
+            come a little closer.
+
+            And may happiness
+
+            always find its way to you.
+
+        </p>
+
+        <button class="nextBtn">
+
+            Final Surprise 🎆
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ================= Finale ================= -->
+
+<section class="scene" id="final">
+
+    <div class="glass finalCard">
+
+        <h1>
+
+            Happy Birthday ✨
+
+        </h1>
+
+        <p>
+
+            Thank you
+
+            for taking this little journey.
+
+            Wishing you
+
+            endless happiness,
+
+            beautiful memories,
+
+            good health,
+
+            success,
+
+            and countless reasons
+
+            to smile.
+
+        </p>
+
+        <h3>
+
+            Have an amazing year ahead ❤️
+
+        </h3>
+
+        <div class="signature">
+
+            — From a Classmate
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Floating Controls -->
+
+<button id="musicBtn">
+
+🔊
+
+</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>
