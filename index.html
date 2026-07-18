@@ -1,369 +1,1076 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Aastha</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      overflow: hidden;
-      background: #050505;
-      color: white;
-      height: 100vh;
-      width: 100%;
-      position: relative;
-    }
-
-    .screen {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      transition: 1s ease;
-    }
-
-    .hidden {
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(1.05);
-    }
-
-    /* ---------- INTRO ---------- */
-
-    #intro {
-      background: radial-gradient(circle at center, #111 0%, #050505 70%);
-    }
-
-    .floating-text {
-      position: absolute;
-      font-size: 1.2rem;
-      opacity: 0.08;
-      animation: float 12s linear infinite;
-      white-space: nowrap;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    .highlight {
-      opacity: 0.35;
-      color: #ffffff;
-      text-shadow: 0 0 12px rgba(255,255,255,0.4);
-    }
-
-    @keyframes float {
-      from {
-        transform: translateY(100vh);
-      }
-      to {
-        transform: translateY(-120vh);
-      }
-    }
-
-    .main-title {
-      z-index: 2;
-      text-align: center;
-      animation: fadeUp 2s ease;
-    }
-
-    .main-title h1 {
-      font-size: 4rem;
-      font-weight: 700;
-      letter-spacing: 4px;
-    }
-
-    .main-title p {
-      margin-top: 15px;
-      color: #bdbdbd;
-      font-size: 1rem;
-      letter-spacing: 2px;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .start-btn {
-      margin-top: 40px;
-      padding: 14px 38px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.05);
-      color: white;
-      border-radius: 50px;
-      backdrop-filter: blur(10px);
-      cursor: pointer;
-      transition: 0.4s ease;
-      font-size: 1rem;
-      letter-spacing: 1px;
-    }
-
-    .start-btn:hover {
-      background: rgba(255,255,255,0.12);
-      transform: scale(1.05);
-    }
-
-    /* ---------- FLOWER WORLD ---------- */
-
-    #flowers {
-      background:
-        radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 40%),
-        linear-gradient(to bottom, #030303, #0b0b0b, #111111);
-    }
-
-    .flower {
-      position: absolute;
-      font-size: 2rem;
-      animation: petals linear infinite;
-      opacity: 0.9;
-    }
-
-    @keyframes petals {
-      from {
-        transform: translateY(-10vh) rotate(0deg);
-      }
-      to {
-        transform: translateY(120vh) rotate(360deg);
-      }
-    }
-
-    .flower-text {
-      position: absolute;
-      z-index: 5;
-      text-align: center;
-      animation: fadeUp 2s ease;
-    }
-
-    .flower-text h2 {
-      font-size: 3.5rem;
-      letter-spacing: 5px;
-      margin-bottom: 15px;
-      text-shadow: 0 0 25px rgba(255,255,255,0.25);
-    }
-
-    .flower-text p {
-      color: #d4d4d4;
-      letter-spacing: 2px;
-      font-size: 1.05rem;
-      text-shadow: 0 0 15px rgba(255,255,255,0.15);
-    }
-
-    /* ---------- VIDEO SECTION ---------- */
-
-    #video-section {
-      background: black;
-    }
-
-    .video-container {
-      width: 90%;
-      max-width: 900px;
-      border-radius: 25px;
-      overflow: hidden;
-      box-shadow: 0 0 60px rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.08);
-      animation: fadeUp 1.5s ease;
-    }
-
-    video {
-      width: 100%;
-      display: block;
-    }
-
-    /* ---------- FINAL ---------- */
-
-    #final {
-      background: radial-gradient(circle at center, #0a0a0a, black);
-      text-align: center;
-      padding: 20px;
-    }
-
-    .final-message {
-      max-width: 700px;
-      animation: fadeUp 2s ease;
-    }
-
-    .final-message h1 {
-      font-size: 4rem;
-      margin-bottom: 20px;
-      letter-spacing: 4px;
-    }
-
-    .final-message p {
-      color: #cfcfcf;
-      font-size: 1.1rem;
-      line-height: 1.9;
-    }
-
-    .signature {
-      margin-top: 35px;
-      color: #888;
-      letter-spacing: 3px;
-      font-size: 0.9rem;
-    }
-
-    @media(max-width: 768px) {
-      .main-title h1,
-      .final-message h1,
-      .flower-text h2 {
-        font-size: 2.5rem;
-      }
-
-      .main-title p,
-      .final-message p {
-        font-size: 0.95rem;
-      }
-    }
-  </style></head>
-<body>  <!-- INTRO -->  <section class="screen" id="intro"><div class="floating-text" style="left:5%; animation-duration:15s;">Happy Birthday</div>
-<div class="floating-text highlight" style="left:12%; animation-duration:13s;">お誕生日おめでとう</div>
-<div class="floating-text" style="left:20%; animation-duration:18s;">Feliz Cumpleaños</div>
-<div class="floating-text highlight" style="left:28%; animation-duration:12s;">Buon Compleanno</div>
-<div class="floating-text" style="left:35%; animation-duration:20s;">Joyeux Anniversaire</div>
-<div class="floating-text highlight" style="left:42%; animation-duration:16s;">생일 축하합니다</div>
-<div class="floating-text" style="left:50%; animation-duration:17s;">Alles Gute zum Geburtstag</div>
-<div class="floating-text highlight" style="left:58%; animation-duration:14s;">Feliz Aniversário</div>
-<div class="floating-text" style="left:66%; animation-duration:19s;">С Днём Рождения</div>
-<div class="floating-text highlight" style="left:74%; animation-duration:15s;">生日快乐</div>
-<div class="floating-text" style="left:82%; animation-duration:21s;">عيد ميلاد سعيد</div>
-<div class="floating-text highlight" style="left:90%; animation-duration:16s;">Doğum Günün Kutlu Olsun</div>
-
-<!-- Indian Languages -->
-<div class="floating-text highlight" style="left:8%; animation-duration:22s;">जन्मदिन मुबारक</div>
-<div class="floating-text" style="left:18%; animation-duration:24s;">শুভ জন্মদিন</div>
-<div class="floating-text highlight" style="left:30%; animation-duration:20s;">ਜਨਮਦਿਨ ਮੁਬਾਰਕ</div>
-<div class="floating-text" style="left:45%; animation-duration:23s;">જન્મદિવસ મુબારક</div>
-<div class="floating-text highlight" style="left:60%; animation-duration:18s;">ಹುಟ್ಟುಹಬ್ಬದ ಶುಭಾಶಯಗಳು</div>
-<div class="floating-text" style="left:76%; animation-duration:25s;">பிறந்தநாள் வாழ்த்துக்கள்</div>
-<div class="floating-text highlight" style="left:88%; animation-duration:19s;">ജന്മദിനാശംസകൾ</div>
-
-<div class="main-title">
-  <h1>Happy Birthday Aastha ✨</h1>
-  <p>Wishes from different corners of the world.</p>
-
-  <div style="margin-top:35px;"></div>
-</div>
-
-  <div id="revealText" style="margin-top:40px; opacity:0; transition:2s ease;">
-    <p style="color:#d4d4d4; letter-spacing:2px; margin-bottom:25px; font-size:1rem;">
-      Some wishes deserve more than words.
-    </p>
-
-    <button class="start-btn" onclick="openSurprise()">
-      Continue ✨
-    </button>
-  </div>
-</div>
-
-  </section>  <!-- FLOWERS -->  <section class="screen hidden" id="flowers"><div class="flower-text">
-  <h2>✨ A Little Surprise ✨</h2>
-
-  <p>
-    “And in the middle of all the chaos,
-    there was someone worth celebrating.”
-  </p>
-
-  <div style="margin-top:25px; color:#bdbdbd; font-size:0.95rem; letter-spacing:2px; line-height:1.8; max-width:650px;">
-    Some people leave memories.
-    Some leave a feeling.
-    And some simply make the world feel softer,
-    brighter,
-    and a little more beautiful.
-  </div>
-
-  <div style="margin-top:35px; font-size:2rem; opacity:0.75; letter-spacing:12px; animation:fadeUp 3s ease; filter:drop-shadow(0 0 10px rgba(255,255,255,0.25));">
-    🌸 🌹 🌷 🪻 🌺 🌻 💮
-  </div>
-
-  <div style="margin-top:30px; color:#8f8f8f; font-size:0.85rem; letter-spacing:4px; text-transform:uppercase;">
-    Flowers from around the world.
-  </div>
-</div>
-
-  </section>  <!-- VIDEO -->  <section class="screen hidden" id="video-section">
-    <div class="video-container">
-      <video id="birthdayVideo" controls>
-        <source src="your-video.mp4" type="video/mp4">
-      </video>
-    </div>
-  </section>  <!-- FINAL -->  <section class="screen hidden" id="final">
-    <div class="final-message">
-      <h1>Happy Birthday ✨</h1><p>
-    Some wishes are simple.<br>
-    Some are made with effort.<br><br>
-
-    Wishing you happiness,
-    beautiful memories,
-    and an amazing year ahead 🌙
-  </p>
-
-  <div class="signature">
-    — from a classmate
-  </div>
-</div>
-
-  </section>  <script>
-
-    // FLOWER GENERATOR
-    const flowers = ['🌸','🌺','🌷','🌹','💮','🌻','🪻'];
-
-    function createFlower() {
-      const flower = document.createElement('div');
-      flower.classList.add('flower');
-      flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
-
-      flower.style.left = Math.random() * 100 + 'vw';
-      flower.style.animationDuration = (Math.random() * 6 + 6) + 's';
-      flower.style.fontSize = (Math.random() * 25 + 20) + 'px';
-
-      document.getElementById('flowers').appendChild(flower);
-
-      setTimeout(() => {
-        flower.remove();
-      }, 12000);
-    }
-
-    setInterval(createFlower, 300);
-
-
-    // SHOW REVEAL TEXT AFTER LANGUAGE FLOW
-
-    setTimeout(() => {
-      document.getElementById('revealText').style.opacity = '1';
-    }, 7000);
-
-
-    // SCREEN FLOW
-
-    function openSurprise() {
-      document.getElementById('intro').classList.add('hidden');
-      document.getElementById('flowers').classList.remove('hidden');
-
-      setTimeout(() => {
-        document.getElementById('flowers').classList.add('hidden');
-        document.getElementById('video-section').classList.remove('hidden');
-
-        const video = document.getElementById('birthdayVideo');
-        video.play();
-
-        video.onended = function() {
-          document.getElementById('video-section').classList.add('hidden');
-          document.getElementById('final').classList.remove('hidden');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Aastha ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. RESET & BASE STYLES
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
-      }, 7000);
-    }
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            cursor: none; /* Custom premium cursor active */
+        }
 
-  </script></body>
+        /* ==========================================================================
+           2. AMBIENT BACKGROUND & PARTICLES
+           ========================================================================== */
+        .sky-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #000000 0%, #030303 50%, #050505 100%);
+            z-index: 1;
+            overflow: hidden;
+            transition: background 3s ease;
+        }
+
+        /* Cinematic flash state for transition */
+        .sky-container.cinematic-shift {
+            background: linear-gradient(135deg, #000000 0%, #010101 50%, #020202 100%);
+        }
+
+        /* Canvas elements layers */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: block;
+        }
+        
+        #starsCanvas { z-index: 2; }
+        #particlesCanvas { z-index: 3; }
+        #flowerCanvas { z-index: 5; }
+
+        /* Global Floating Language Overlay Wrapper */
+        .language-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            pointer-events: none;
+            overflow: hidden;
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+
+        .language-overlay.fade-out {
+            opacity: 0;
+            transform: scale(1.05);
+        }
+
+        /* Individual Text Nodes Elements */
+        .floating-wish {
+            position: absolute;
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.05);
+            white-space: nowrap;
+            font-weight: 500;
+            letter-spacing: 1px;
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+
+        .floating-wish.highlight {
+            color: rgba(255, 255, 255, 0.22);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.25);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .floating-wish { font-size: 0.95rem; }
+            .floating-wish.highlight { font-size: 1.05rem; }
+        }
+
+        /* Realistic glowing moon */
+        .moon {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 130px;
+            height: 130px;
+            background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f4f4fb 40%, #e2e2f5 70%, #c2c2e5 100%);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 40px 10px rgba(255, 255, 255, 0.25),
+                0 0 80px 30px rgba(200, 200, 255, 0.15),
+                0 0 120px 60px rgba(255, 255, 255, 0.05);
+            z-index: 2;
+            transition: all 4s cubic-bezier(0.25, 1, 0.5, 1);
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .moon {
+                width: 80px;
+                height: 80px;
+                top: 5%;
+                right: 5%;
+            }
+        }
+
+        /* Intensive glow on scene transitions */
+        .moon.brighten {
+            transform: scale(1.15);
+            box-shadow: 
+                0 0 60px 20px rgba(255, 255, 255, 0.4),
+                0 0 120px 50px rgba(220, 220, 255, 0.3),
+                0 0 200px 90px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Custom Interactive Aura Cursor */
+        .custom-cursor {
+            width: 8px;
+            height: 8px;
+            background: #ffffff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+        }
+
+        .custom-cursor-glow {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        /* ==========================================================================
+           3. UI LAYOUT & SCENES (Glassmorphism & Apple-inspired)
+           ========================================================================== */
+        .scene-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .scene {
+            position: absolute;
+            width: 100%;
+            max-width: 650px;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.92) translateY(15px);
+            transition: opacity 1.5s cubic-bezier(0.33, 1, 0.68, 1), 
+                        transform 1.5s cubic-bezier(0.33, 1, 0.68, 1), 
+                        visibility 1.5s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .scene.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Premium Glassmorphism Container Card */
+        .glass-card {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(25px) saturate(140%);
+            -webkit-backdrop-filter: blur(25px) saturate(140%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 28px;
+            padding: 50px 40px;
+            box-shadow: 
+                0 4px 30px rgba(0, 0, 0, 0.6),
+                inset 0 1px 1px rgba(255,255,255,0.05),
+                0 0 40px 5px rgba(255, 255, 255, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 480px) {
+            .glass-card {
+                padding: 35px 20px;
+            }
+        }
+
+        /* Typography & Headings */
+        h1.gold-text {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 40%, #ecc9ff 80%, #ffc5e3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+        }
+
+        @media (max-width: 480px) {
+            h1.gold-text { font-size: 2.1rem; }
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            min-height: 50px;
+            margin-bottom: 35px;
+        }
+
+        /* Premium Glowing Button */
+        .btn-premium {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 242, 255, 0.8) 100%);
+            color: #000000;
+            border: none;
+            padding: 16px 42px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15), 0 0 30px rgba(255,255,255,0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            outline: none;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.35), 0 0 40px rgba(255, 255, 255, 0.15);
+            background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+        }
+
+        .btn-premium:active {
+            transform: translateY(-1px) scale(0.99);
+        }
+
+        /* ==========================================================================
+           4. SCENE SPECIFIC STYLES
+           ========================================================================== */
+        
+        /* Scene 2: Dedicated Poetic / Cinematic Text Stage */
+        #scene2 {
+            max-width: 800px;
+            width: 90%;
+        }
+
+        .poetic-text-container {
+            font-size: 1.6rem;
+            font-weight: 300;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 0 4px 10px rgba(0,0,0,0.7);
+            word-wrap: break-word;
+        }
+
+        @media (max-width: 768px) {
+            .poetic-text-container { font-size: 1.25rem; line-height: 1.8; }
+        }
+
+        /* Scene 3: Final Card Multi-line letter spacing */
+        .letter-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+            text-align: left;
+            margin: 20px 0;
+            min-height: 220px;
+            white-space: pre-line;
+            font-weight: 300;
+        }
+
+        .signature {
+            width: 100%;
+            text-align: right;
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 25px;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+
+        .signature.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+           5. CONTROLS & UTILITIES
+           ========================================================================== */
+        .audio-control {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .audio-control:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: scale(1.08);
+        }
+
+        .audio-control svg {
+            width: 20px;
+            height: 20px;
+            fill: #ffffff;
+        }
+
+        /* Cinematic blackout overlay overlay */
+        .cinematic-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 50;
+            transition: opacity 1.2s ease, visibility 1.2s;
+        }
+
+        .cinematic-overlay.trigger {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Typewriter Cursor animation */
+        .blinking-cursor::after {
+            content: '|';
+            animation: blink 0.8s infinite;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Integrated Audio Track Path -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="music/perfect.mpeg" type="audio/mpeg">
+    </audio>
+
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="custom-cursor-glow" id="customCursorGlow"></div>
+
+    <button class="audio-control" id="audioToggle" title="Toggle Music" aria-label="Toggle Music">
+        <svg id="audioIconPlay" viewBox="0 0 24 24" style="display: block;">
+            <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg id="audioIconPause" viewBox="0 0 24 24" style="display: none;">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+    </button>
+
+    <div class="sky-container" id="skyBg">
+        <div class="moon" id="celestialMoon"></div>
+        
+        <!-- Interactive Multi-language Wishes Container Dynamic Layer -->
+        <div class="language-overlay" id="langContainer"></div>
+        
+        <canvas id="starsCanvas"></canvas>
+        <canvas id="particlesCanvas"></canvas>
+        <canvas id="flowerCanvas"></canvas>
+    </div>
+
+    <div class="cinematic-overlay" id="blackout"></div>
+
+    <div class="scene-wrapper">
+
+        <section class="scene active" id="scene1">
+            <div class="glass-card">
+                <h1 class="gold-text">Happy Birthday Aastha ✨</h1>
+                <div class="subtitle" id="typewriter1"></div>
+                <button class="btn-premium" id="btnContinue">Continue</button>
+            </div>
+        </section>
+
+        <section class="scene" id="scene2">
+            <div class="poetic-text-container" id="typewriter2"></div>
+        </section>
+
+        <section class="scene" id="scene3">
+            <div class="glass-card">
+                <h1 class="gold-text">Happy Birthday, Aastha 🎂✨</h1>
+                <div class="letter-text" id="typewriter3"></div>
+                <div class="signature" id="signatureTag">— From A Classmate..</div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            /* ==========================================================================
+               A. GLOBAL CONFIGURATION & CORE STATE
+               ========================================================================== */
+            const state = {
+                currentScene: 1,
+                mouse: { x: window.innerWidth / 2, y: window.innerHeight / 2, targetX: window.innerWidth / 2, targetY: window.innerHeight / 2 },
+                parallax: { x: 0, y: 0 },
+                starsSpeedMultiplier: 1.0,
+                activeEnvironment: 'stars', 
+                flowersSpawnActive: false,
+                firefliesSpawnActive: false,
+                heartsSpawnActive: false
+            };
+
+            // Canvas references & Context mapping
+            const starsCanvas = document.getElementById("starsCanvas");
+            const particlesCanvas = document.getElementById("particlesCanvas");
+            const flowerCanvas = document.getElementById("flowerCanvas");
+            
+            const ctxStars = starsCanvas.getContext("2d");
+            const ctxParticles = particlesCanvas.getContext("2d");
+            const ctxFlowers = flowerCanvas.getContext("2d");
+
+            // UI Elements mappings
+            const body = document.body;
+            const customCursor = document.getElementById("customCursor");
+            const customCursorGlow = document.getElementById("customCursorGlow");
+            const moon = document.getElementById("celestialMoon");
+            const skyBg = document.getElementById("skyBg");
+            const blackout = document.getElementById("blackout");
+            const langContainer = document.getElementById("langContainer");
+            
+            const btnContinue = document.getElementById("btnContinue");
+            const audioToggle = document.getElementById("audioToggle");
+            const bgMusic = document.getElementById("bgMusic");
+            const audioIconPlay = document.getElementById("audioIconPlay");
+            const audioIconPause = document.getElementById("audioIconPause");
+
+            // Text content declarations
+            const txtLandingSubtitle = "A beautiful soul deserves unforgettable moment";
+            const txtFlowerPoem = "Here's to the smile that brightens days\nThe herat that spreads kindness\nAnd a year filled with endless happiness.\nAnd much more beautiful things.\n HAPPY BIRTHDAY";
+            const txtFinalBlessing = "May every dream find its way to you.\nMay every smile stay forever.\nMay happiness,\npeace,\nsuccess\nand beautiful memories\nalways surround you.\n\nHave the most wonderful birthday.";
+
+            // Database of international and regional Indian birthday greetings
+            const languagesWishes = [
+                { text: "Happy Birthday", highlight: false },
+                { text: "जन्मदिन मुबारक", highlight: true },
+                { text: "お誕生日おめでとう", highlight: true },
+                { text: "Feliz Cumpleaños", highlight: false },
+                { text: "Buon Compleanno", highlight: true },
+                { text: "Joyeux Anniversaire", highlight: false },
+                { text: "생일 축하합니다", highlight: true },
+                { text: "Alles Gute", highlight: false },
+                { text: "Feliz Aniversário", highlight: true },
+                { text: "С Днём Рождения", highlight: false },
+                { text: "生日快乐", highlight: true },
+                { text: "عيد ميلاد سعيد", highlight: false },
+                { text: "शुभ जन्मदिन", highlight: false },
+                { text: "ਜਨਮਦਿਨ ਮੁਬਾਰਕ", highlight: true },
+                { text: "જન્મદિવસ ਮੁਬਾਰਕ", highlight: false },
+                { text: "ಹುಟ್ಟುಹಬ್ಬದ ಶುಭಾಶಯಗಳು", highlight: true },
+                { text: "பிறந்தநாள் வாழ்த்துக்கள்", highlight: false },
+                { text: "ಜನ್ಮದಿನಾಶಂസകಳ್", highlight: true },
+                { text: "Doğum Günün Kutlu Olsun", highlight: false },
+                { text: "Sretan Rođendan", highlight: false }
+            ];
+
+            let globalFloatingTexts = [];
+
+            /* ==========================================================================
+               B. INITIALIZE RESPONSIVE CANVAS DIMENSIONS & OBJECT SPARKERS
+               ========================================================================== */
+            function resizeCanvases() {
+                const w = window.innerWidth;
+                const h = window.innerHeight;
+                
+                [starsCanvas, particlesCanvas, flowerCanvas].forEach(canvas => {
+                    canvas.width = w;
+                    canvas.height = h;
+                });
+                
+                generateStars(w, h);
+            }
+            window.addEventListener('resize', resizeCanvases);
+
+            /* ==========================================================================
+               C. PREMIUM INTERACTIVE CURSOR & PARALLAX TRACKING
+               ========================================================================== */
+            window.addEventListener('mousemove', (e) => {
+                state.mouse.targetX = e.clientX;
+                state.mouse.targetY = e.clientY;
+                
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                state.parallax.x = (e.clientX - centerX) / centerX;
+                state.parallax.y = (e.clientY - centerY) / centerY;
+            });
+
+            function updateCursor() {
+                state.mouse.x += (state.mouse.targetX - state.mouse.x) * 0.15;
+                state.mouse.y += (state.mouse.targetY - state.mouse.y) * 0.15;
+                
+                customCursor.style.left = `${state.mouse.x}px`;
+                customCursor.style.top = `${state.mouse.y}px`;
+                
+                customCursorGlow.style.left = `${state.mouse.x}px`;
+                customCursorGlow.style.top = `${state.mouse.y}px`;
+                
+                const moonX = state.parallax.x * 25; 
+                const moonY = state.parallax.y * 25;
+                moon.style.transform = `translate(${moonX}px, ${moonY}px) ${moon.classList.contains('brighten') ? 'scale(1.15)' : 'scale(1)'}`;
+                
+                if (state.currentScene === 1) {
+                    globalFloatingTexts.forEach(item => {
+                        const pX = state.parallax.x * item.factor * 15;
+                        const pY = state.parallax.y * item.factor * 15;
+                        item.dom.style.transform = `translate3d(${pX}px, ${item.currentY + pY}px, 0)`;
+                    });
+                }
+
+                requestAnimationFrame(updateCursor);
+            }
+            requestAnimationFrame(updateCursor);
+
+            /* ==========================================================================
+               D. INTERNATIONAL FLUID LANGUAGES FLOATING LOGIC
+               ========================================================================== */
+            function initFloatingLanguages() {
+                langContainer.innerHTML = "";
+                globalFloatingTexts = [];
+                
+                const totalTracks = languagesWishes.length;
+                const stepPercent = 100 / totalTracks;
+                
+                languagesWishes.forEach((wish, index) => {
+                    const wishElement = document.createElement("div");
+                    wishElement.className = `floating-wish ${wish.highlight ? 'highlight' : ''}`;
+                    wishElement.innerText = wish.text;
+                    
+                    const baseLeft = (index * stepPercent) + (Math.random() * 4 - 2);
+                    wishElement.style.left = `${Math.max(2, Math.min(baseLeft, 90))}%`;
+                    
+                    const startY = window.innerHeight + (Math.random() * 300 + 50);
+                    const speed = Math.random() * 0.6 + 0.3;
+                    const depthFactor = Math.random() * 0.6 + 0.4; 
+                    
+                    langContainer.appendChild(wishElement);
+                    
+                    globalFloatingTexts.push({
+                        dom: wishElement,
+                        currentY: startY,
+                        speed: speed,
+                        factor: depthFactor,
+                        initialStartY: startY
+                    });
+                });
+            }
+
+            function animateFloatingLanguages() {
+                if (state.currentScene !== 1) return;
+                
+                globalFloatingTexts.forEach(item => {
+                    item.currentY -= item.speed;
+                    
+                    if (item.currentY < -100) {
+                        item.currentY = window.innerHeight + Math.random() * 150 + 50;
+                    }
+                });
+                
+                requestAnimationFrame(animateFloatingLanguages);
+            }
+
+            /* ==========================================================================
+               E. AUDIO ARCHITECTURE MECHANICS
+               ========================================================================== */
+            audioToggle.addEventListener('click', () => {
+                if (bgMusic.paused) {
+                    bgMusic.play().then(() => {
+                        audioIconPlay.style.display = "none";
+                        audioIconPause.style.display = "block";
+                    }).catch(err => console.log("Audio play blocked by browser policies: ", err));
+                } else {
+                    bgMusic.pause();
+                    audioIconPlay.style.display = "block";
+                    audioIconPause.style.display = "none";
+                }
+            });
+
+            /* ==========================================================================
+               F. PROCEDURAL TWINKLING STARS & SHOOTING STARS ENGINE (Canvas Layer 1)
+               ========================================================================== */
+            let starsArray = [];
+            let shootingStarsArray = [];
+
+            function generateStars(width, height) {
+                starsArray = [];
+                const density = Math.floor((width * height) / 4000);
+                for (let i = 0; i < density; i++) {
+                    starsArray.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        radius: Math.random() * 1.2 + 0.3,
+                        alpha: Math.random(),
+                        speed: (Math.random() * 0.02 + 0.005)
+                    });
+                }
+            }
+
+            function addShootingStar() {
+                if (Math.random() > 0.97 && shootingStarsArray.length < 3) {
+                    shootingStarsArray.push({
+                        x: Math.random() * window.innerWidth * 0.7,
+                        y: Math.random() * window.innerHeight * 0.4,
+                        len: Math.random() * 80 + 40,
+                        speed: Math.random() * 6 + 4,
+                        thickness: Math.random() * 1.5 + 0.5,
+                        alpha: 1,
+                        dx: Math.random() * 4 + 4,
+                        dy: Math.random() * 2 + 2
+                    });
+                }
+            }
+
+            function renderStarsLayer() {
+                ctxStars.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+                
+                const offsetX = state.parallax.x * 10;
+                const offsetY = state.parallax.y * 10;
+                
+                ctxStars.fillStyle = "#ffffff";
+                starsArray.forEach(star => {
+                    star.alpha += star.speed * state.starsSpeedMultiplier;
+                    if (star.alpha > 1 || star.alpha < 0) {
+                        star.speed = -star.speed;
+                    }
+                    
+                    ctxStars.globalAlpha = Math.max(0.1, Math.min(1, star.alpha));
+                    ctxStars.beginPath();
+                    let sx = star.x + offsetX;
+                    let sy = star.y + offsetY;
+                    
+                    ctxStars.arc(sx, sy, star.radius, 0, Math.PI * 2);
+                    ctxStars.fill();
+                });
+                
+                ctxStars.globalAlpha = 1.0;
+                addShootingStar();
+                
+                for (let i = shootingStarsArray.length - 1; i >= 0; i--) {
+                    let s = shootingStarsArray[i];
+                    s.x += s.dx;
+                    s.y += s.dy;
+                    s.alpha -= 0.015;
+                    
+                    if (s.alpha <= 0 || s.x > starsCanvas.width || s.y > starsCanvas.height) {
+                        shootingStarsArray.splice(i, 1);
+                        continue;
+                    }
+                    
+                    ctxStars.save();
+                    ctxStars.strokeStyle = `rgba(230, 240, 255, ${s.alpha})`;
+                    ctxStars.lineWidth = s.thickness;
+                    ctxStars.beginPath();
+                    ctxStars.moveTo(s.x, s.y);
+                    ctxStars.lineTo(s.x - s.len * (s.dx/s.speed), s.y - s.len * (s.dy/s.speed));
+                    ctxStars.stroke();
+                    ctxStars.restore();
+                }
+                
+                requestAnimationFrame(renderStarsLayer);
+            }
+
+            /* ==========================================================================
+               G. PARTICLES ENGINE (Floating ambient dust, Fireflies, Hearts)
+               ========================================================================== */
+            let ambientParticles = [];
+            
+            function spawnAmbientDust() {
+                const count = 45;
+                for (let i = 0; i < count; i++) {
+                    ambientParticles.push({
+                        type: 'dust',
+                        x: Math.random() * window.innerWidth,
+                        y: Math.random() * window.innerHeight,
+                        radius: Math.random() * 1.5 + 0.5,
+                        color: 'rgba(230, 240, 255, ',
+                        alpha: Math.random() * 0.5 + 0.1,
+                        vx: Math.random() * 0.2 - 0.1,
+                        vy: Math.random() * -0.3 - 0.1,
+                        phase: Math.random() * Math.PI
+                    });
+                }
+            }
+
+            function manageSecondaryParticles() {
+                if (state.firefliesSpawnActive && Math.random() > 0.94 && ambientParticles.filter(p => p.type === 'firefly').length < 25) {
+                    ambientParticles.push({
+                        type: 'firefly',
+                        x: Math.random() * window.innerWidth,
+                        y: window.innerHeight + 20,
+                        radius: Math.random() * 2.5 + 1.5,
+                        color: 'rgba(235, 255, 150, ',
+                        alpha: 0.1,
+                        vx: Math.random() * 0.6 - 0.3,
+                        vy: Math.random() * -0.8 - 0.4,
+                        phase: Math.random() * Math.PI * 2,
+                        waveSpeed: Math.random() * 0.02 + 0.01,
+                        waveAmp: Math.random() * 1.5 + 0.5
+                    });
+                }
+
+                if (state.heartsSpawnActive && Math.random() > 0.98 && ambientParticles.filter(p => p.type === 'heart').length < 6) {
+                    ambientParticles.push({
+                        type: 'heart',
+                        x: Math.random() * (window.innerWidth - 60) + 30,
+                        y: window.innerHeight + 30,
+                        scale: Math.random() * 0.6 + 0.4,
+                        alpha: 0,
+                        targetAlpha: Math.random() * 0.4 + 0.3,
+                        vx: Math.random() * 0.4 - 0.2,
+                        vy: Math.random() * -0.6 - 0.3,
+                        rotation: Math.random() * 0.2 - 0.1
+                    });
+                }
+            }
+
+            function drawHeartShape(ctx, x, y, scale) {
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.bezierCurveTo(x - 12 * scale, y - 12 * scale, x - 25 * scale, y + 5 * scale, x, y + 22 * scale);
+                ctx.bezierCurveTo(x + 25 * scale, y + 5 * scale, x + 12 * scale, y - 12 * scale, x, y);
+                ctx.closePath();
+            }
+
+            function renderParticlesLayer() {
+                ctxParticles.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+                manageSecondaryParticles();
+
+                const mx = state.mouse.x;
+                const my = state.mouse.y;
+
+                for (let i = ambientParticles.length - 1; i >= 0; i--) {
+                    let p = ambientParticles[i];
+                    
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    let dx = p.x - mx;
+                    let dy = p.y - my;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 130) {
+                        let force = (130 - dist) / 130;
+                        let pullX = (dx / dist) * force * 1.8;
+                        let pullY = (dy / dist) * force * 1.8;
+                        p.x += pullX;
+                        p.y += pullY;
+                    }
+
+                    if (p.y < -30 || p.x < -30 || p.x > particlesCanvas.width + 30) {
+                        if (p.type === 'dust') {
+                            p.y = particlesCanvas.height + 10;
+                            p.x = Math.random() * particlesCanvas.width;
+                        } else {
+                            ambientParticles.splice(i, 1);
+                            continue;
+                        }
+                    }
+
+                    if (p.type === 'dust') {
+                        p.phase += 0.01;
+                        let currentAlpha = Math.max(0.1, p.alpha + Math.sin(p.phase) * 0.1);
+                        ctxParticles.fillStyle = p.color + currentAlpha + ")";
+                        ctxParticles.beginPath();
+                        ctxParticles.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctxParticles.fill();
+                    } 
+                    else if (p.type === 'firefly') {
+                        p.phase += p.waveSpeed;
+                        p.x += Math.sin(p.phase) * p.waveAmp * 0.5;
+                        
+                        let flash = (Math.sin(p.phase * 2.5) + 1) / 2;
+                        let currentAlpha = 0.2 + flash * 0.6;
+                        
+                        ctxParticles.save();
+                        ctxParticles.shadowBlur = p.radius * 4;
+                        ctxParticles.shadowColor = 'rgba(255, 255, 255, 0.4)';
+                        ctxParticles.fillStyle = p.color + currentAlpha + ")";
+                        ctxParticles.beginPath();
+                        ctxParticles.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctxParticles.fill();
+                        ctxParticles.restore();
+                    }
+                    else if (p.type === 'heart') {
+                        if (p.alpha < p.targetAlpha) p.alpha += 0.01;
+                        p.rotation += 0.002;
+                        
+                        ctxParticles.save();
+                        ctxParticles.translate(p.x, p.y);
+                        ctxParticles.rotate(p.rotation);
+                        ctxParticles.fillStyle = `rgba(255, 255, 255, ${p.alpha * 0.6})`;
+                        ctxParticles.shadowBlur = 10;
+                        ctxParticles.shadowColor = 'rgba(255, 255, 255, 0.2)';
+                        drawHeartShape(ctxParticles, 0, 0, p.scale);
+                        ctxParticles.fill();
+                        ctxParticles.restore();
+                    }
+                }
+
+                requestAnimationFrame(renderParticlesLayer);
+            }
+
+            /* ==========================================================================
+               H. ADVANCED CINEMATIC FALLING FLOWER PETALS ENGINE (Canvas Layer 3)
+               ========================================================================== */
+            let flowersArray = [];
+
+            function drawPetal(ctx, x, y, r, type, rot) {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(rot);
+                ctx.shadowBlur = 4;
+                
+                if (type === 'sakura') {
+                    ctx.fillStyle = 'rgba(255, 192, 203, 0.85)';
+                    ctx.shadowColor = 'rgba(255, 160, 180, 0.3)';
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, r, r * 0.6, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.fillStyle = 'rgba(255, 150, 170, 0.9)';
+                    ctx.moveTo(r, 0);
+                    ctx.lineTo(r - 3, -2);
+                    ctx.lineTo(r - 3, 2);
+                    ctx.fill();
+                } 
+                else if (type === 'rose') {
+                    ctx.fillStyle = 'rgba(225, 40, 85, 0.8)';
+                    ctx.shadowColor = 'rgba(180, 20, 50, 0.4)';
+                    ctx.beginPath();
+                    ctx.arc(0, 0, r, 0, Math.PI, true);
+                    ctx.bezierCurveTo(-r, r*0.5, 0, r*1.6, 0, r*1.6);
+                    ctx.bezierCurveTo(0, r*1.6, r, r*0.5, r, 0);
+                    ctx.fill();
+                } 
+                else {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                    ctx.shadowColor = 'rgba(230, 235, 255, 0.3)';
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, r * 0.9, r * 0.5, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.fillStyle = 'rgba(255, 210, 100, 1)';
+                    ctx.beginPath();
+                    ctx.arc(-r*0.4, 0, 2, 0, Math.PI*2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+
+            function spawnFlowerPetals() {
+                if (!state.flowersSpawnActive) return;
+                
+                if (Math.random() > 0.88 && flowersArray.length < 60) {
+                    const types = ['sakura', 'rose', 'white'];
+                    const pickedType = types[Math.floor(Math.random() * types.length)];
+                    
+                    flowersArray.push({
+                        type: pickedType,
+                        x: Math.random() * window.innerWidth,
+                        y: -30,
+                        radius: Math.random() * 8 + 6,
+                        vp: Math.random() * 1.2 + 0.8,
+                        swingSpeed: Math.random() * 0.02 + 0.01,
+                        swingAmp: Math.random() * 25 + 15,
+                        phase: Math.random() * Math.PI,
+                        rotation: Math.random() * Math.PI * 2,
+                        rotationSpeed: Math.random() * 0.02 - 0.01
+                    });
+                }
+            }
+
+            function renderFlowersLayer() {
+                ctxFlowers.clearRect(0, 0, flowerCanvas.width, flowerCanvas.height);
+                spawnFlowerPetals();
+
+                for (let i = flowersArray.length - 1; i >= 0; i--) {
+                    let f = flowersArray[i];
+                    
+                    f.phase += f.swingSpeed;
+                    f.y += f.vp;
+                    let cx = f.x + Math.sin(f.phase) * f.swingAmp;
+                    f.rotation += f.rotationSpeed;
+
+                    if (f.y > flowerCanvas.height + 30) {
+                        flowersArray.splice(i, 1);
+                        continue;
+                    }
+
+                    drawPetal(ctxFlowers, cx, f.y, f.radius, f.type, f.rotation);
+                }
+
+                requestAnimationFrame(renderFlowersLayer);
+            }
+
+            /* ==========================================================================
+               I. REFINED ASYNCHRONOUS TYPEWRITER TEXT ENGINE
+               ========================================================================== */
+            function executeTypewriter(elementId, text, speed = 45) {
+                return new Promise((resolve) => {
+                    const element = document.getElementById(elementId);
+                    element.innerHTML = "";
+                    element.classList.add("blinking-cursor");
+                    
+                    let index = 0;
+                    function appendCharacter() {
+                        if (index < text.length) {
+                            let char = text.charAt(index);
+                            if (char === "\n") {
+                                element.innerHTML += "<br>";
+                            } else {
+                                element.innerHTML += char;
+                            }
+                            index++;
+                            setTimeout(appendCharacter, speed);
+                        } else {
+                            element.classList.remove("blinking-cursor");
+                            resolve();
+                        }
+                    }
+                    appendCharacter();
+                });
+            }
+
+            /* ==========================================================================
+               J. CINEMATIC SCENE FLOW CONTROLLER MECHANICS
+               ========================================================================== */
+            executeTypewriter("typewriter1", txtLandingSubtitle, 60);
+
+            btnContinue.addEventListener('click', () => {
+                if(state.currentScene !== 1) return;
+                
+                if (bgMusic.paused) {
+                    bgMusic.play().then(() => {
+                        audioIconPlay.style.display = "none";
+                        audioIconPause.style.display = "block";
+                    }).catch(() => {});
+                }
+
+                transitionToSceneTwo();
+            });
+
+            function transitionToSceneTwo() {
+                state.currentScene = 2;
+                
+                langContainer.classList.add("fade-out");
+                blackout.classList.add("trigger");
+                
+                setTimeout(() => {
+                    document.getElementById("scene1").classList.remove("active");
+                    langContainer.style.display = "none"; 
+                    
+                    skyBg.classList.add("cinematic-shift");
+                    moon.classList.add("brighten");
+                    state.starsSpeedMultiplier = 6.0;
+                    state.flowersSpawnActive = true;
+                    
+                    document.getElementById("scene2").classList.add("active");
+                    blackout.classList.remove("trigger");
+                    
+                    setTimeout(async () => {
+                        await executeTypewriter("typewriter2", txtFlowerPoem, 55);
+                        
+                        setTimeout(() => {
+                            transitionToFinalScene();
+                        }, 10000);
+                    }, 800);
+
+                }, 1200);
+            }
+
+            function transitionToFinalScene() {
+                state.currentScene = 3;
+                blackout.classList.add("trigger");
+
+                setTimeout(() => {
+                    document.getElementById("scene2").classList.remove("active");
+                    
+                    state.starsSpeedMultiplier = 1.8;
+                    state.firefliesSpawnActive = true;
+                    state.heartsSpawnActive = true;
+                    
+                    document.getElementById("scene3").classList.add("active");
+                    blackout.classList.remove("trigger");
+
+                    setTimeout(async () => {
+                        await executeTypewriter("typewriter3", txtFinalBlessing, 40);
+                        document.getElementById("signatureTag").classList.add("reveal");
+                    }, 800);
+
+                }, 1200);
+            }
+
+            /* ==========================================================================
+               K. INITIALIZATION SYSTEM EXECUTIONS BOOTSTRAPPER
+               ========================================================================== */
+            resizeCanvases();
+            spawnAmbientDust();
+            initFloatingLanguages();
+            
+            renderStarsLayer();
+            renderParticlesLayer();
+            renderFlowersLayer();
+            animateFloatingLanguages();
+        });
+    </script>
+</body>
 </html>
