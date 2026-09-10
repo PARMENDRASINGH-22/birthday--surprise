@@ -27,7 +27,7 @@
             font-family: 'Poppins', sans-serif;
             background: #000000;
             color: #ffffff;
-            cursor: none; /* Custom premium cursor active */
+            cursor: none;
         }
 
         /* ==========================================================================
@@ -45,12 +45,10 @@
             transition: background 3s ease;
         }
 
-        /* Cinematic flash state for transition */
         .sky-container.cinematic-shift {
             background: linear-gradient(135deg, #000000 0%, #010101 50%, #020202 100%);
         }
 
-        /* Canvas elements layers */
         canvas {
             position: absolute;
             top: 0;
@@ -65,7 +63,6 @@
         #particlesCanvas { z-index: 3; }
         #flowerCanvas { z-index: 5; }
 
-        /* Global Floating Language Overlay Wrapper */
         .language-overlay {
             position: absolute;
             inset: 0;
@@ -82,7 +79,6 @@
             transform: scale(1.05);
         }
 
-        /* Individual Text Nodes Elements */
         .floating-wish {
             position: absolute;
             font-size: 1.15rem;
@@ -105,7 +101,6 @@
             .floating-wish.highlight { font-size: 1.05rem; }
         }
 
-        /* Realistic glowing moon */
         .moon {
             position: absolute;
             top: 10%;
@@ -132,7 +127,6 @@
             }
         }
 
-        /* Intensive glow on scene transitions */
         .moon.brighten {
             transform: scale(1.15);
             box-shadow: 
@@ -141,7 +135,6 @@
                 0 0 200px 90px rgba(255, 255, 255, 0.15);
         }
 
-        /* Custom Interactive Aura Cursor */
         .custom-cursor {
             width: 8px;
             height: 8px;
@@ -167,7 +160,7 @@
         }
 
         /* ==========================================================================
-           3. UI LAYOUT & SCENES (Glassmorphism & Apple-inspired)
+           3. UI LAYOUT & SCENES
            ========================================================================== */
         .scene-wrapper {
             position: absolute;
@@ -204,7 +197,6 @@
             transform: scale(1) translateY(0);
         }
 
-        /* Premium Glassmorphism Container Card */
         .glass-card {
             width: 100%;
             background: rgba(255, 255, 255, 0.02);
@@ -227,7 +219,6 @@
             }
         }
 
-        /* Typography & Headings */
         h1.gold-text {
             font-size: 2.8rem;
             font-weight: 700;
@@ -253,7 +244,6 @@
             margin-bottom: 35px;
         }
 
-        /* Premium Glowing Button */
         .btn-premium {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 242, 255, 0.8) 100%);
             color: #000000;
@@ -280,11 +270,26 @@
             transform: translateY(-1px) scale(0.99);
         }
 
+        /* Slide 2 Continue Button Specific */
+        #btnContinueScene2 {
+            margin-top: 35px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s ease;
+        }
+
+        #btnContinueScene2.reveal {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
         /* ==========================================================================
            4. SCENE SPECIFIC STYLES
            ========================================================================== */
-        
-        /* Scene 2: Dedicated Poetic / Cinematic Text Stage */
         #scene2 {
             max-width: 800px;
             width: 90%;
@@ -301,9 +306,10 @@
 
         @media (max-width: 768px) {
             .poetic-text-container { font-size: 1.25rem; line-height: 1.8; }
+            .btn-premium { padding: 14px 34px; font-size: 0.95rem; }
+            #btnContinueScene2 { margin-top: 25px; }
         }
 
-        /* Scene 3: Final Card Multi-line letter spacing */
         .letter-text {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -366,7 +372,6 @@
             fill: #ffffff;
         }
 
-        /* Cinematic blackout overlay overlay */
         .cinematic-overlay {
             position: fixed;
             top: 0;
@@ -385,7 +390,6 @@
             visibility: visible;
         }
 
-        /* Typewriter Cursor animation */
         .blinking-cursor::after {
             content: '|';
             animation: blink 0.8s infinite;
@@ -401,7 +405,7 @@
 </head>
 <body>
 
-    <!-- Integrated Audio Track Path -->
+    <!-- Audio Track: loop enabled for continuous playback -->
     <audio id="bgMusic" loop preload="auto">
         <source src="music/perfect.mpeg" type="audio/mpeg">
     </audio>
@@ -420,10 +424,7 @@
 
     <div class="sky-container" id="skyBg">
         <div class="moon" id="celestialMoon"></div>
-        
-        <!-- Interactive Multi-language Wishes Container Dynamic Layer -->
         <div class="language-overlay" id="langContainer"></div>
-        
         <canvas id="starsCanvas"></canvas>
         <canvas id="particlesCanvas"></canvas>
         <canvas id="flowerCanvas"></canvas>
@@ -433,6 +434,7 @@
 
     <div class="scene-wrapper">
 
+        <!-- Slide 1 -->
         <section class="scene active" id="scene1">
             <div class="glass-card">
                 <h1 class="gold-text">Happy Birthday Aastha ✨</h1>
@@ -441,10 +443,13 @@
             </div>
         </section>
 
+        <!-- Slide 2 -->
         <section class="scene" id="scene2">
             <div class="poetic-text-container" id="typewriter2"></div>
+            <button class="btn-premium" id="btnContinueScene2">Continue</button>
         </section>
 
+        <!-- Slide 3 -->
         <section class="scene" id="scene3">
             <div class="glass-card">
                 <h1 class="gold-text">Happy Birthday, Aastha 🎂✨</h1>
@@ -458,21 +463,16 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             
-            /* ==========================================================================
-               A. GLOBAL CONFIGURATION & CORE STATE
-               ========================================================================== */
             const state = {
                 currentScene: 1,
                 mouse: { x: window.innerWidth / 2, y: window.innerHeight / 2, targetX: window.innerWidth / 2, targetY: window.innerHeight / 2 },
                 parallax: { x: 0, y: 0 },
                 starsSpeedMultiplier: 1.0,
-                activeEnvironment: 'stars', 
                 flowersSpawnActive: false,
                 firefliesSpawnActive: false,
                 heartsSpawnActive: false
             };
 
-            // Canvas references & Context mapping
             const starsCanvas = document.getElementById("starsCanvas");
             const particlesCanvas = document.getElementById("particlesCanvas");
             const flowerCanvas = document.getElementById("flowerCanvas");
@@ -481,8 +481,6 @@
             const ctxParticles = particlesCanvas.getContext("2d");
             const ctxFlowers = flowerCanvas.getContext("2d");
 
-            // UI Elements mappings
-            const body = document.body;
             const customCursor = document.getElementById("customCursor");
             const customCursorGlow = document.getElementById("customCursorGlow");
             const moon = document.getElementById("celestialMoon");
@@ -491,17 +489,16 @@
             const langContainer = document.getElementById("langContainer");
             
             const btnContinue = document.getElementById("btnContinue");
+            const btnContinueScene2 = document.getElementById("btnContinueScene2");
             const audioToggle = document.getElementById("audioToggle");
             const bgMusic = document.getElementById("bgMusic");
             const audioIconPlay = document.getElementById("audioIconPlay");
             const audioIconPause = document.getElementById("audioIconPause");
 
-            // Text content declarations
             const txtLandingSubtitle = "A beautiful soul deserves unforgettable moment";
             const txtFlowerPoem = "Here's to the smile that brightens days\nThe heart that spreads kindness\nAnd a year filled with endless happiness.\nAnd much more beautiful things.\n HAPPY BIRTHDAY";
             const txtFinalBlessing = "May every dream find its way to you.\nMay every smile stay forever.\nMay happiness,\npeace,\nsuccess\nand beautiful memories\nalways surround you.\n\nHave the most wonderful birthday.";
 
-            // Database of international and regional Indian birthday greetings
             const languagesWishes = [
                 { text: "Happy Birthday", highlight: false },
                 { text: "जन्मदिन मुबारक", highlight: true },
@@ -520,36 +517,26 @@
                 { text: "જન્મદિવસ ਮੁਬਾਰਕ", highlight: false },
                 { text: "ಹುಟ್ಟುಹಬ್ಬದ ಶುಭಾಶಯಗಳು", highlight: true },
                 { text: "பிறந்தநாள் வாழ்த்துக்கள்", highlight: false },
-                { text: "ಜನ್ಮದಿನಾಶಂസകಳ್", highlight: true },
                 { text: "Doğum Günün Kutlu Olsun", highlight: false },
                 { text: "Sretan Rođendan", highlight: false }
             ];
 
             let globalFloatingTexts = [];
 
-            /* ==========================================================================
-               B. INITIALIZE RESPONSIVE CANVAS DIMENSIONS & OBJECT SPARKERS
-               ========================================================================== */
             function resizeCanvases() {
                 const w = window.innerWidth;
                 const h = window.innerHeight;
-                
                 [starsCanvas, particlesCanvas, flowerCanvas].forEach(canvas => {
                     canvas.width = w;
                     canvas.height = h;
                 });
-                
                 generateStars(w, h);
             }
             window.addEventListener('resize', resizeCanvases);
 
-            /* ==========================================================================
-               C. PREMIUM INTERACTIVE CURSOR & PARALLAX TRACKING
-               ========================================================================== */
             window.addEventListener('mousemove', (e) => {
                 state.mouse.targetX = e.clientX;
                 state.mouse.targetY = e.clientY;
-                
                 const centerX = window.innerWidth / 2;
                 const centerY = window.innerHeight / 2;
                 state.parallax.x = (e.clientX - centerX) / centerX;
@@ -562,7 +549,6 @@
                 
                 customCursor.style.left = `${state.mouse.x}px`;
                 customCursor.style.top = `${state.mouse.y}px`;
-                
                 customCursorGlow.style.left = `${state.mouse.x}px`;
                 customCursorGlow.style.top = `${state.mouse.y}px`;
                 
@@ -577,18 +563,13 @@
                         item.dom.style.transform = `translate3d(${pX}px, ${item.currentY + pY}px, 0)`;
                     });
                 }
-
                 requestAnimationFrame(updateCursor);
             }
             requestAnimationFrame(updateCursor);
 
-            /* ==========================================================================
-               D. INTERNATIONAL FLUID LANGUAGES FLOATING LOGIC
-               ========================================================================== */
             function initFloatingLanguages() {
                 langContainer.innerHTML = "";
                 globalFloatingTexts = [];
-                
                 const totalTracks = languagesWishes.length;
                 const stepPercent = 100 / totalTracks;
                 
@@ -596,59 +577,59 @@
                     const wishElement = document.createElement("div");
                     wishElement.className = `floating-wish ${wish.highlight ? 'highlight' : ''}`;
                     wishElement.innerText = wish.text;
-                    
                     const baseLeft = (index * stepPercent) + (Math.random() * 4 - 2);
                     wishElement.style.left = `${Math.max(2, Math.min(baseLeft, 90))}%`;
-                    
                     const startY = window.innerHeight + (Math.random() * 300 + 50);
                     const speed = Math.random() * 0.6 + 0.3;
                     const depthFactor = Math.random() * 0.6 + 0.4; 
                     
                     langContainer.appendChild(wishElement);
-                    
                     globalFloatingTexts.push({
                         dom: wishElement,
                         currentY: startY,
                         speed: speed,
-                        factor: depthFactor,
-                        initialStartY: startY
+                        factor: depthFactor
                     });
                 });
             }
 
             function animateFloatingLanguages() {
                 if (state.currentScene !== 1) return;
-                
                 globalFloatingTexts.forEach(item => {
                     item.currentY -= item.speed;
-                    
                     if (item.currentY < -100) {
                         item.currentY = window.innerHeight + Math.random() * 150 + 50;
                     }
                 });
-                
                 requestAnimationFrame(animateFloatingLanguages);
             }
 
-            /* ==========================================================================
-               E. AUDIO ARCHITECTURE MECHANICS
-               ========================================================================== */
-            audioToggle.addEventListener('click', () => {
+            function updateAudioUI(isPlaying) {
+                audioIconPlay.style.display = isPlaying ? "none" : "block";
+                audioIconPause.style.display = isPlaying ? "block" : "none";
+            }
+
+            function playMusic() {
                 if (bgMusic.paused) {
                     bgMusic.play().then(() => {
-                        audioIconPlay.style.display = "none";
-                        audioIconPause.style.display = "block";
-                    }).catch(err => console.log("Audio play blocked by browser policies: ", err));
+                        updateAudioUI(true);
+                    }).catch(err => {
+                        console.warn("Audio play prevented:", err);
+                    });
+                }
+            }
+
+            // Audio Toggle Icon
+            audioToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (bgMusic.paused) {
+                    playMusic();
                 } else {
                     bgMusic.pause();
-                    audioIconPlay.style.display = "block";
-                    audioIconPause.style.display = "none";
+                    updateAudioUI(false);
                 }
             });
 
-            /* ==========================================================================
-               F. PROCEDURAL TWINKLING STARS & SHOOTING STARS ENGINE (Canvas Layer 1)
-               ========================================================================== */
             let starsArray = [];
             let shootingStarsArray = [];
 
@@ -683,26 +664,18 @@
 
             function renderStarsLayer() {
                 ctxStars.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
-                
                 const offsetX = state.parallax.x * 10;
                 const offsetY = state.parallax.y * 10;
                 
                 ctxStars.fillStyle = "#ffffff";
                 starsArray.forEach(star => {
                     star.alpha += star.speed * state.starsSpeedMultiplier;
-                    if (star.alpha > 1 || star.alpha < 0) {
-                        star.speed = -star.speed;
-                    }
-                    
+                    if (star.alpha > 1 || star.alpha < 0) star.speed = -star.speed;
                     ctxStars.globalAlpha = Math.max(0.1, Math.min(1, star.alpha));
                     ctxStars.beginPath();
-                    let sx = star.x + offsetX;
-                    let sy = star.y + offsetY;
-                    
-                    ctxStars.arc(sx, sy, star.radius, 0, Math.PI * 2);
+                    ctxStars.arc(star.x + offsetX, star.y + offsetY, star.radius, 0, Math.PI * 2);
                     ctxStars.fill();
                 });
-                
                 ctxStars.globalAlpha = 1.0;
                 addShootingStar();
                 
@@ -711,12 +684,10 @@
                     s.x += s.dx;
                     s.y += s.dy;
                     s.alpha -= 0.015;
-                    
                     if (s.alpha <= 0 || s.x > starsCanvas.width || s.y > starsCanvas.height) {
                         shootingStarsArray.splice(i, 1);
                         continue;
                     }
-                    
                     ctxStars.save();
                     ctxStars.strokeStyle = `rgba(230, 240, 255, ${s.alpha})`;
                     ctxStars.lineWidth = s.thickness;
@@ -726,18 +697,12 @@
                     ctxStars.stroke();
                     ctxStars.restore();
                 }
-                
                 requestAnimationFrame(renderStarsLayer);
             }
 
-            /* ==========================================================================
-               G. PARTICLES ENGINE (Floating ambient dust, Fireflies, Hearts)
-               ========================================================================== */
             let ambientParticles = [];
-            
             function spawnAmbientDust() {
-                const count = 45;
-                for (let i = 0; i < count; i++) {
+                for (let i = 0; i < 45; i++) {
                     ambientParticles.push({
                         type: 'dust',
                         x: Math.random() * window.innerWidth,
@@ -801,7 +766,6 @@
 
                 for (let i = ambientParticles.length - 1; i >= 0; i--) {
                     let p = ambientParticles[i];
-                    
                     p.x += p.vx;
                     p.y += p.vy;
 
@@ -810,10 +774,8 @@
                     let dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < 130) {
                         let force = (130 - dist) / 130;
-                        let pullX = (dx / dist) * force * 1.8;
-                        let pullY = (dy / dist) * force * 1.8;
-                        p.x += pullX;
-                        p.y += pullY;
+                        p.x += (dx / dist) * force * 1.8;
+                        p.y += (dy / dist) * force * 1.8;
                     }
 
                     if (p.y < -30 || p.x < -30 || p.x > particlesCanvas.width + 30) {
@@ -833,14 +795,11 @@
                         ctxParticles.beginPath();
                         ctxParticles.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                         ctxParticles.fill();
-                    } 
-                    else if (p.type === 'firefly') {
+                    } else if (p.type === 'firefly') {
                         p.phase += p.waveSpeed;
                         p.x += Math.sin(p.phase) * p.waveAmp * 0.5;
-                        
                         let flash = (Math.sin(p.phase * 2.5) + 1) / 2;
                         let currentAlpha = 0.2 + flash * 0.6;
-                        
                         ctxParticles.save();
                         ctxParticles.shadowBlur = p.radius * 4;
                         ctxParticles.shadowColor = 'rgba(255, 255, 255, 0.4)';
@@ -849,11 +808,9 @@
                         ctxParticles.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                         ctxParticles.fill();
                         ctxParticles.restore();
-                    }
-                    else if (p.type === 'heart') {
+                    } else if (p.type === 'heart') {
                         if (p.alpha < p.targetAlpha) p.alpha += 0.01;
                         p.rotation += 0.002;
-                        
                         ctxParticles.save();
                         ctxParticles.translate(p.x, p.y);
                         ctxParticles.rotate(p.rotation);
@@ -865,52 +822,31 @@
                         ctxParticles.restore();
                     }
                 }
-
                 requestAnimationFrame(renderParticlesLayer);
             }
 
-            /* ==========================================================================
-               H. ADVANCED CINEMATIC FALLING FLOWER PETALS ENGINE (Canvas Layer 3)
-               ========================================================================== */
             let flowersArray = [];
-
             function drawPetal(ctx, x, y, r, type, rot) {
                 ctx.save();
                 ctx.translate(x, y);
                 ctx.rotate(rot);
                 ctx.shadowBlur = 4;
-                
                 if (type === 'sakura') {
                     ctx.fillStyle = 'rgba(255, 192, 203, 0.85)';
-                    ctx.shadowColor = 'rgba(255, 160, 180, 0.3)';
                     ctx.beginPath();
                     ctx.ellipse(0, 0, r, r * 0.6, 0, 0, Math.PI * 2);
                     ctx.fill();
-                    ctx.beginPath();
-                    ctx.fillStyle = 'rgba(255, 150, 170, 0.9)';
-                    ctx.moveTo(r, 0);
-                    ctx.lineTo(r - 3, -2);
-                    ctx.lineTo(r - 3, 2);
-                    ctx.fill();
-                } 
-                else if (type === 'rose') {
+                } else if (type === 'rose') {
                     ctx.fillStyle = 'rgba(225, 40, 85, 0.8)';
-                    ctx.shadowColor = 'rgba(180, 20, 50, 0.4)';
                     ctx.beginPath();
                     ctx.arc(0, 0, r, 0, Math.PI, true);
                     ctx.bezierCurveTo(-r, r*0.5, 0, r*1.6, 0, r*1.6);
                     ctx.bezierCurveTo(0, r*1.6, r, r*0.5, r, 0);
                     ctx.fill();
-                } 
-                else {
+                } else {
                     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-                    ctx.shadowColor = 'rgba(230, 235, 255, 0.3)';
                     ctx.beginPath();
                     ctx.ellipse(0, 0, r * 0.9, r * 0.5, 0, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.fillStyle = 'rgba(255, 210, 100, 1)';
-                    ctx.beginPath();
-                    ctx.arc(-r*0.4, 0, 2, 0, Math.PI*2);
                     ctx.fill();
                 }
                 ctx.restore();
@@ -918,13 +854,10 @@
 
             function spawnFlowerPetals() {
                 if (!state.flowersSpawnActive) return;
-                
                 if (Math.random() > 0.88 && flowersArray.length < 60) {
                     const types = ['sakura', 'rose', 'white'];
-                    const pickedType = types[Math.floor(Math.random() * types.length)];
-                    
                     flowersArray.push({
-                        type: pickedType,
+                        type: types[Math.floor(Math.random() * types.length)],
                         x: Math.random() * window.innerWidth,
                         y: -30,
                         radius: Math.random() * 8 + 6,
@@ -941,44 +874,31 @@
             function renderFlowersLayer() {
                 ctxFlowers.clearRect(0, 0, flowerCanvas.width, flowerCanvas.height);
                 spawnFlowerPetals();
-
                 for (let i = flowersArray.length - 1; i >= 0; i--) {
                     let f = flowersArray[i];
-                    
                     f.phase += f.swingSpeed;
                     f.y += f.vp;
                     let cx = f.x + Math.sin(f.phase) * f.swingAmp;
                     f.rotation += f.rotationSpeed;
-
                     if (f.y > flowerCanvas.height + 30) {
                         flowersArray.splice(i, 1);
                         continue;
                     }
-
                     drawPetal(ctxFlowers, cx, f.y, f.radius, f.type, f.rotation);
                 }
-
                 requestAnimationFrame(renderFlowersLayer);
             }
 
-            /* ==========================================================================
-               I. REFINED ASYNCHRONOUS TYPEWRITER TEXT ENGINE
-               ========================================================================== */
             function executeTypewriter(elementId, text, speed = 45) {
                 return new Promise((resolve) => {
                     const element = document.getElementById(elementId);
                     element.innerHTML = "";
                     element.classList.add("blinking-cursor");
-                    
                     let index = 0;
                     function appendCharacter() {
                         if (index < text.length) {
                             let char = text.charAt(index);
-                            if (char === "\n") {
-                                element.innerHTML += "<br>";
-                            } else {
-                                element.innerHTML += char;
-                            }
+                            element.innerHTML += (char === "\n") ? "<br>" : char;
                             index++;
                             setTimeout(appendCharacter, speed);
                         } else {
@@ -990,27 +910,23 @@
                 });
             }
 
-            /* ==========================================================================
-               J. CINEMATIC SCENE FLOW CONTROLLER MECHANICS
-               ========================================================================== */
             executeTypewriter("typewriter1", txtLandingSubtitle, 60);
 
+            // Click 1st Continue: Start music & go to Slide 2
             btnContinue.addEventListener('click', () => {
-                if(state.currentScene !== 1) return;
-                
-                if (bgMusic.paused) {
-                    bgMusic.play().then(() => {
-                        audioIconPlay.style.display = "none";
-                        audioIconPause.style.display = "block";
-                    }).catch(() => {});
-                }
-
+                if (state.currentScene !== 1) return;
+                playMusic();
                 transitionToSceneTwo();
+            });
+
+            // Click 2nd Continue: Go to Slide 3
+            btnContinueScene2.addEventListener('click', () => {
+                if (state.currentScene !== 2) return;
+                transitionToFinalScene();
             });
 
             function transitionToSceneTwo() {
                 state.currentScene = 2;
-                
                 langContainer.classList.add("fade-out");
                 blackout.classList.add("trigger");
                 
@@ -1028,10 +944,7 @@
                     
                     setTimeout(async () => {
                         await executeTypewriter("typewriter2", txtFlowerPoem, 55);
-                        
-                        setTimeout(() => {
-                            transitionToFinalScene();
-                        }, 10000);
+                        btnContinueScene2.classList.add("reveal");
                     }, 800);
 
                 }, 1200);
@@ -1059,13 +972,9 @@
                 }, 1200);
             }
 
-            /* ==========================================================================
-               K. INITIALIZATION SYSTEM EXECUTIONS BOOTSTRAPPER
-               ========================================================================== */
             resizeCanvases();
             spawnAmbientDust();
             initFloatingLanguages();
-            
             renderStarsLayer();
             renderParticlesLayer();
             renderFlowersLayer();
